@@ -251,7 +251,9 @@ section { margin-bottom: 36px; }
   .prow .brief { grid-column: 2 / 4; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
   .prow .st { position: absolute; right: 12px; top: 10px; }
 }
+.qsites { grid-template-columns: 1fr 1fr; }
 @media (max-width: 560px) {
+  .qsites { grid-template-columns: 1fr; }
   .wrap { padding: 0 14px; }
   .brand-t small { display: none; }
   .hero { padding: 22px 20px; }

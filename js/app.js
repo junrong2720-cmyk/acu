@@ -9,6 +9,8 @@
   var S = (function () {
     var s;
     try { s = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { s = {}; }
+    var lq = /[?&]lang=(zh|en|bi)\b/.exec(location.search);
+    if (lq) s.lang = lq[1];
     if (!s.lang) s.lang = 'zh';
     s.star = s.star || []; s.wrong = s.wrong || {}; s.seen = s.seen || {};
     return s;
@@ -32,6 +34,8 @@
       qTables: '特定穴总表', qTablesD: '五输、原络、郄穴、俞募、下合、八会、八脉交会',
       qQuiz: '自测练习', qQuizD: '归经、特定穴、看定位认穴、看主治认穴、闪卡',
       qMe: '收藏与错题', qMeD: '收藏的穴位和做错的题都在这里',
+      sisters: '姐妹站', learnLink: '读懂中医', learnLinkD: '从阴阳五行到 417 味中药、162 首方剂',
+      tizhiLink: '中医体质测试', tizhiLinkD: '国家标准 60 题,测测你是哪种体质',
       course: '循行', mInd: '主治概要', time: '流注', group: '分类',
       all: '全部', onlySpec: '只看特定穴', practiceThis: '练这条经',
       loc: '定位', ind: '主治', ndl: '刺灸法', star: '收藏', starred: '已收藏',
@@ -77,6 +81,8 @@
       qTables: 'Specific-point tables', qTablesD: 'Five Shu, Yuan & Luo, Xi-Cleft, Back-Shu & Front-Mu, Lower He-Sea, Influential, Confluent',
       qQuiz: 'Self-test', qQuizD: 'Meridian, specific points, location, indications, flashcards',
       qMe: 'Starred & mistakes', qMeD: 'Your starred points and missed questions',
+      sisters: 'Sister sites', learnLink: 'Chinese Medicine Explained', learnLinkD: 'From yin-yang to 417 herbs and 162 formulas',
+      tizhiLink: 'Body Constitution Test', tizhiLinkD: 'The standard 60-question test',
       course: 'Pathway', mInd: 'Main indications', time: 'Peak time', group: 'Group',
       all: 'All', onlySpec: 'Specific points only', practiceThis: 'Practice this meridian',
       loc: 'Location', ind: 'Indications', ndl: 'Needling & moxibustion', star: 'Star', starred: 'Starred',
@@ -229,6 +235,9 @@
       '<a href="#/t/wushu"><b>' + esc(t('qTables')) + '</b><span>' + esc(t('qTablesD')) + '</span></a>' +
       '<a href="#/q"><b>' + esc(t('qQuiz')) + '</b><span>' + esc(t('qQuizD')) + '</span></a>' +
       '<a href="#/me"><b>' + esc(t('qMe')) + '</b><span>' + esc(t('qMeD')) + '</span></a></div></div></section>';
+    html += '<section><div class="sec-h"><h2>' + esc(t('sisters')) + '</h2></div><div class="quick qsites">' +
+      '<a href="https://junrong2720-cmyk.github.io/learn/' + (S.lang === 'zh' ? '' : '?lang=' + S.lang) + '" target="_blank" rel="noopener"><b>' + esc(t('learnLink')) + '</b><span>' + esc(t('learnLinkD')) + '</span></a>' +
+      '<a href="https://junrong2720-cmyk.github.io/tcmjr/' + (S.lang === 'en' ? 'en.html' : '') + '" target="_blank" rel="noopener"><b>' + esc(t('tizhiLink')) + '</b><span>' + esc(t('tizhiLinkD')) + '</span></a></div></section>';
     app.innerHTML = html;
   }
   function todayCard(p) {
